@@ -60,12 +60,12 @@ INSERT INTO EMPL VALUES (0108, 'Batbu', 'batbu108@gmail.com', 9448341201, 30, NU
 SELECT * FROM EMPL;
 
 DECLARE
-  c_empid empl.emp_id%TYPE :=&ceid;
+  c_empid empl.emp_id%TYPE :=&ce;
   c_empname empl.emp_name%TYPE;
   c_comm empl.comm%TYPE;
   c_salary empl.salary%TYPE;
   CURSOR emp_c IS
-    SELECT emp_id, emp_name, comm, salary FROM empl;
+    SELECT emp_id, emp_name, NVL(comm, 'NOT ASSIGNED'), NVL(salary, 'NOT ASSIGNED') FROM empl;
 BEGIN
   OPEN emp_c;
   LOOP
