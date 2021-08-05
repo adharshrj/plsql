@@ -14,7 +14,7 @@ END;
 /*Write a PL/SQL code to print first 50 whole numbers. Also insert the list in
 temp table which is created with only one column of number datatype.*/
 SET SERVEROUTPUT ON;
-CREATE GLOBAL TEMPORARY TABLE tb8
+CREATE GLOBAL TEMPORARY TABLE tb80
 (
 numb1 NUMBER(4)
 )
@@ -22,19 +22,19 @@ ON COMMIT PRESERVE ROWS;
 DECLARE
   n number:= 50;
   i number:=1;
-  m number:=1;
+  m number:=0;
 BEGIN
     
     FOR i IN 1..n-1 LOOP
-	   m:=m+3;
+	   m:=m+1;
 	   dbms_output.put(m||'  ');
-       INSERT INTO tb8 VALUES(m);
+       INSERT INTO tb80 VALUES(m);
     END LOOP;
     dbms_output.new_line; 
  END;
  /
 
- SELECT * FROM tb8;
+ SELECT * FROM tb80;
  
  /*Using cursor display the details of all those employees in employee table
 whose sum of sal and comm is more than 3000*/
@@ -73,11 +73,12 @@ BEGIN
     EXIT WHEN emp_c%NOTFOUND;
      IF ((c_salary + c_comm) > 3000) THEN
       dbms_output.Put_line(c_empid
-      || '   '
+      || '  ' || (c_salary + c_comm)
       ||  ' salary + comm is greater than 3000' );
     ELSE
       dbms_output.Put_line(c_empid
-      || ' salary + comm is lesser than 3000');
+      || ' ' || (c_salary + c_comm)
+      || ' NULL VALUES FOUND');
     END IF;
     END LOOP;
     CLOSE emp_c;
@@ -98,7 +99,7 @@ BEGIN
    :NEW.emp_name := UPPER(:NEW.emp_name);
 END;
 SELECT * FROM EMPL;
-INSERT INTO EMPL VALUES (0110, 'Batbu', 'batbu108@gmail.com', 9448341201, 30, NULL);
+INSERT INTO EMPL VALUES (0112, 'asfhg', 'batbu108@gmail.com', 9448341201, 30, NULL);
 DROP TABLE EMPL;
 
 /*Write a function in PL/SQL to check whether the given string is a palindrome
@@ -126,7 +127,6 @@ END;
 assuming your own data in a table*/
 DECLARE
 nsal empl.salary%TYPE;
-invalid_id EXCEPTION;
 BEGIN
 	SELECT salary INTO nsal from empl WHERE emp_id=&emp_id;
 EXCEPTION
@@ -163,7 +163,9 @@ END;
 CREATE OR REPLACE PROCEDURE del1
 IS
 BEGIN
-DELETE FROM EMPL WHERE EMP_ID=0101;
+DELETE FROM EMPL WHERE EMP_ID=101;
 
 COMMIT;
 END;
+
+SELECT* FROM EMPL;
