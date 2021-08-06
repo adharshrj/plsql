@@ -65,7 +65,7 @@ DECLARE
   c_comm empl.comm%TYPE;
   c_salary empl.salary%TYPE;
   CURSOR emp_c IS
-    SELECT emp_id, emp_name, NVL(comm, 'NOT ASSIGNED'), NVL(salary, 'NOT ASSIGNED') FROM empl;
+    SELECT emp_id, emp_name, NVL(comm, 0), NVL(salary, 0) FROM empl;
 BEGIN
   OPEN emp_c;
   LOOP
