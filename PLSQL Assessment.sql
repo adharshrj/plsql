@@ -68,6 +68,20 @@ BEGIN
 END;
 
 /*Create a table EBILL for the following specification.*/
+/*Load the table with any 5 records without entering values for BAMT column and do the
+following.
+Write a PL/SQL procedure EBILLP with parameters of IN and OUT type and calculate bamt
+using CURSOR as per the following criteria.
+if nounits>200
+ amount=(nounits-200)*1.5+150;
+ else if nounits>100
+ amount=(unit-100)*1.5+50;
+ else
+ amount=unit*0.5;
+
+Finally, update the bamt column of the table with the calculated amount and also display all
+details of consumer on the screen.
+Create another PL/SQL block to call the procedure to accomplish the task.*/
 CREATE TABLE ebill (
   cno NUMBER(10),
   cname VARCHAR2(30) NOT NULL,
@@ -119,3 +133,5 @@ BEGIN
 SELECT cno,cname,nounits,nbamt FROM ebill where cno=ncno, ncaname=cname, nnounits=nounits; nbamt=bamt;
 COMMIT;
 END;
+
+
