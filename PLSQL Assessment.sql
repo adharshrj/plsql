@@ -1,3 +1,4 @@
+/*Create a table myemp for the following specification*/
 CREATE TABLE myemp (
   Eno NUMBER(4),
   Ename VARCHAR2(30) NOT NULL,
@@ -34,6 +35,7 @@ UPDATE myemp SET comm=30 WHERE eno=0103;
 UPDATE myemp SET comm=50 WHERE eno=0105;
 
 CREATE TABLE empcommnul AS (SELECT Eno,Ename,deptno,Esal,comm FROM myemp WHERE comm is NULL);
+DELETE Eno,Ename,deptno,Esal,comm FROM myemp WHERE comm is NULL;
 insert into empcommnul select Eno,Ename,deptno,Esal,comm from myemp where comm is null;
 select*from empcommnul;
 
